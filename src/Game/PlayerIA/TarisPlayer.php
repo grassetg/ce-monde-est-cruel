@@ -8,6 +8,8 @@ use Hackathon\Game\Result;
  * Class TarisPlayers
  * @package Hackathon\PlayerIA
  * @author Guillaume Grasset
+ *
+ *  Simple algorithme ou j'ai voulu rendre le premier choix incertain puis prendre l'opposé du dernier coup de l'adversaire.
  */
 class TarisPlayer extends Player
 {
