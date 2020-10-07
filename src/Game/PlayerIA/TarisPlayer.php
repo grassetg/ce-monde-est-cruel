@@ -40,31 +40,39 @@ class TarisPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
-        $opponentLastMove = $this->result->getLastChoiceFor($this->opponentSide);
+        $opponentChoices = $this->result->getChoicesFor($this->opponentSide);
         $roundNumber = $this->result->getNbRound();
-        $seconds = date('s');
+        $char = $this->result->getStatsFor($this->opponentSide)["name"][0];
 
         if ($roundNumber == 0) {
 
-            if ($seconds % 3 == 0) {
+            if (ord($char) % 3 == 0) {
                 return parent::paperChoice();
-            } elseif ($seconds % 3 == 1) {
+            } elseif (ord($char) % 3 == 1) {
                 return parent::rockChoice();
             } else {
                 return parent::scissorsChoice();
             }
-        } elseif ($opponentLastMove === 'scissors') {
+        } else {
+            return $this->playOpposite($opponentChoices[0]);
+            // return detectPattern($roundNumber, $opponentChoices);
+        }
+    }
+
+    function playOpposite($choice)
+    {
+        if ($choice === 'scissors') {
 
             return parent::rockChoice();
-        } elseif ($opponentLastMove === 'paper') {
-
+        } elseif ($choice === 'paper') {
 
             return parent::scissorsChoice();
-        } elseif ($opponentLastMove === 'rock') {
+        } else {
 
             return parent::paperChoice();
         }
     }
+
 }
 
 ;
