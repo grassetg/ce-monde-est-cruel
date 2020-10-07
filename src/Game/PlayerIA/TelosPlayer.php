@@ -41,8 +41,21 @@ class TelosPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
+        $opponentLastMove = $this->result->getLastChoiceFor($this->opponentSide);
 
-        return parent::rockChoice();
+        if ($this->result->getNbRound() === 0) {
+
+            return parent::paperChoice();
+        } elseif ($opponentLastMove === 'scissors') {
+
+            return parent::rockChoice();
+        } elseif ($opponentLastMove === 'paper') {
+
+            return parent::scissorsChoice();
+        } elseif ($opponentLastMove === 'rock') {
+
+            return parent::paperChoice();
+        }
 
     }
 };
