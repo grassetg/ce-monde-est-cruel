@@ -56,21 +56,30 @@ class TarisPlayer extends Player
                 return parent::scissorsChoice();
             }
         } else {
-            return $this->playOpposite($opponentChoices[0]);
+            return $this->playOpposite($opponentChoices[0], $roundNumber);
             // return detectPattern($roundNumber, $opponentChoices);
         }
     }
 
-    function playOpposite($choice)
+    function playOpposite($choice, $roundNumber)
     {
         if ($choice === 'scissors') {
 
+            if ($roundNumber % 3 == 1) {
+                return parent::scissorsChoice();
+            }
             return parent::rockChoice();
         } elseif ($choice === 'paper') {
 
+            if ($roundNumber % 3 == 1) {
+                return parent::paperChoice();
+            }
             return parent::scissorsChoice();
         } else {
 
+            if ($roundNumber % 3 == 1) {
+                return parent::scissorsChoice();
+            }
             return parent::paperChoice();
         }
     }
